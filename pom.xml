@@ -71,12 +71,12 @@
                 <version>9.1.2</version>
                 <configuration>
                     <tomeeVersion>9.1.2</tomeeVersion>
-                    <tomeeClassifier>microprofile</tomeeClassifier>
-<!--                    <tomeeClassifier>plus</tomeeClassifier>-->
+<!--                    <tomeeClassifier>microprofile</tomeeClassifier>-->
+                    <tomeeClassifier>plus</tomeeClassifier>
                     <debug>false</debug>
                     <tomeeHttpPort>8282</tomeeHttpPort>
                     <debugPort>5005</debugPort>
-                    <args>-Dfoo=bar</args>
+                    <args>-Dfoo=bar -Dtomee.mp.scan=true</args>
                     <config>${project.basedir}/src/test/tomee/conf</config>
                     <skipCurrentProject>true</skipCurrentProject>
                     <webapps>
