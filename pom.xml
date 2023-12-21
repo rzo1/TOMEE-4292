@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>TOMEE-4292</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <!-- Maven specific settings -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+        <maven.compile.encoding>UTF-8</maven.compile.encoding>
+        <java.source>17</java.source>
+        <java.target>17</java.target>
+
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+
+        <sample.artifact.name>${project.artifactId}</sample.artifact.name>
+        <sample.artifact.version>${project.version}</sample.artifact.version>
+
+        <maven.compiler.version>3.11.0</maven.compiler.version>
+        <maven.war.version>3.4.0</maven.war.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.tomee.bom</groupId>
+            <artifactId>tomee-plus</artifactId>
+            <version>9.1.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${java.source}</source>
+                    <target>${java.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.version}</version>
+                <configuration>
+
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>${sample.artifact.name}-${sample.artifact.version}</warName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>9.1.2</version>
+                <configuration>
+                    <tomeeVersion>9.1.2</tomeeVersion>
+                    <tomeeClassifier>plus</tomeeClassifier>
+                    <debug>false</debug>
+                    <tomeeHttpPort>8282</tomeeHttpPort>
+                    <debugPort>5005</debugPort>
+                    <args>-Dfoo=bar</args>
+                    <config>${project.basedir}/src/test/tomee/conf</config>
+                    <skipCurrentProject>true</skipCurrentProject>
+                    <webapps>
+                        <webapp>
+                            org.example:${sample.artifact.name}:${sample.artifact.version}?name=ROOT
+                        </webapp>
+                    </webapps>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
