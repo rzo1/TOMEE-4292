@@ -61,7 +61,6 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${maven.war.version}</version>
                 <configuration>
-
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <warName>${sample.artifact.name}-${sample.artifact.version}</warName>
                 </configuration>
@@ -72,7 +71,8 @@
                 <version>9.1.2</version>
                 <configuration>
                     <tomeeVersion>9.1.2</tomeeVersion>
-                    <tomeeClassifier>plus</tomeeClassifier>
+                    <tomeeClassifier>microprofile</tomeeClassifier>
+<!--                    <tomeeClassifier>plus</tomeeClassifier>-->
                     <debug>false</debug>
                     <tomeeHttpPort>8282</tomeeHttpPort>
                     <debugPort>5005</debugPort>

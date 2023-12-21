@@ -16,7 +16,7 @@ public class Index {
     @GET
     @Produces({MediaType.TEXT_HTML})
     @Counted(name = "Counters.HTTP_REQUESTS",
-            tags = {"Labels.RESOURCE_USERINPUT", "Labels.ACTION_SELECT"},
+            tags = {"label1=RESOURCE_USERINPUT", "label2=ACTION_SELECT"},
             absolute = true,
             description = "Counters.HTTP_REQUESTS_DESCRIPTION")
     public Response requestForSMSNumber(
